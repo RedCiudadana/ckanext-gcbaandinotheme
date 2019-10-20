@@ -22,10 +22,11 @@
             {% set header_sections = h.get_theme_config('about.sections', []) %}
 
             <div class="col-xs-12 col-sm-5 no-padding logo-header">
-                <div class="logo-and-xs-icon">
+                {% set image = h.get_theme_config('header.image') %}
+                <div class="logo-and-xs-icon {{ 'default-logo-hidden' if image else '' }}">
                     <i class="icon-reorder" aria-hidden="true"></i>
                     <a href="{{ h.url('home') }}">
-                        {% set image = h.get_theme_config('header.image') %}
+                        
                         <img src="{{ image if image else '/img/logo_ministerio.svg' }}" class="logo-ministerio">
                     </a>
                     {% if c.userobj and c.userobj.sysadmin and c.controller != 'ckanext.gobar_theme.config_controller:GobArConfigController' %}
